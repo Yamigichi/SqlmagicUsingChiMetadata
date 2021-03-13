@@ -30,28 +30,6 @@ except:
 %load_ext sql
 %sql ibm_db_sa://wbf09333:gr9-xt3g97f61r5x@dashdb-txn-sbox-yp-dal09-14.services.dal.bluemix.net:50000/BLUDB
 
-#The total Numbers of Crime Records from Crime Table
-%sql select count(*) from CHICAGO_CRIME_DATA;
-
-#First 10rows from Crime Table 
-%sql select * from CHICAGO_CRIME_DATA fetch first 10 rows only;
-#%sql select * from CENSUS_DATA fetch first 10 rows only;
-
-#Crime arrest 
-%sql select count(ARREST) from CHICAGO_CRIME_DATA WHERE ARREST=TRUE; 
-
-#Crimes reported at gassstaions
-%sql select DISTINCT(PRIMARY_TYPE) from CHICAGO_CRIME_DATA WHERE LOCATION_DESCRIPTION ='GAS STATION'; 
-
-#Community that start with the letter 'B' 
-%sql select COMMUNITY_AREA_NAME from CENSUS_DATA WHERE COMMUNITY_AREA_NAME LIKE 'B%';
-
-#communities in area 10-15 that are healthy 
-%sql select S.NAME_OF_SCHOOL,C.COMMUNITY_AREA_NUMBER,C.COMMUNITY_AREA_NAME,S.healthy_school_certified from CENSUS_DATA as  C \
-LEFT OUTER JOIN CHICAGO_PUBLIC_SCHOOL as S \
-on UPPER(C.COMMUNITY_AREA_NAME) = UPPER(S.community_area_name) \
-where C.COMMUNITY_AREA_NUMBER between 10 and 15 AND \
-S.healthy_school_certified = 'Yes';
     
     
     
